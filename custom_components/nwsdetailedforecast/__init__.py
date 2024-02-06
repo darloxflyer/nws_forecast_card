@@ -46,6 +46,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     location = entry.data.get(CONF_LOCATION, hass.config.location_name)
     station = _get_config_value(entry, CONF_STATION_IDENTIFIER)
     grid = _get_config_value(entry, CONF_GRID_IDENTIFIER)
+    forecast_twicedaily = _get_config_value(entry, CONF_TWICEDAILY_FORECAST)
     nws_entity_platform = _get_config_value(entry, NWS_PLATFORM)
     nws_scan_Int = entry.data[CONF_SCAN_INTERVAL]
 
