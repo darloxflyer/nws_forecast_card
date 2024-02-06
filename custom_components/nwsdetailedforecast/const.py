@@ -67,7 +67,7 @@ ALL_CONDITIONS = {
     "windSpeed": "Wind Speed",
     "windDirection": "Wind Direction",
     "shortForecast" : "Short Forecast",
-    "detailedForecast" : "Detailed Forecast"
+    "detailedForecast" : "Detailed Forecast",
     "updated": "Updated At",
 }
 
