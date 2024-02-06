@@ -43,7 +43,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up NWS Detailed Weather as config entry."""
     name = entry.data[CONF_NAME]
     api_key = entry.data[CONF_API_KEY]
-    location = entry.data.get(CONF_LOCATION, hass.config.location)
+    location = entry.data.get(CONF_LOCATION, hass.config.location_name)
     station = _get_config_value(entry, CONF_STATION_IDENTIFIER)
     grid = _get_config_value(entry, CONF_GRID_IDENTIFIER)
     pw_entity_platform = _get_config_value(entry, PW_PLATFORM)

@@ -20,12 +20,10 @@ import homeassistant.helpers.config_validation as cv
 from .const import (
     CONF_LANGUAGE,
     CONFIG_FLOW_VERSION,
-    DEFAULT_FORECAST_MODE,
     DEFAULT_LANGUAGE,
     DEFAULT_NAME,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
-    FORECAST_MODES,
     LANGUAGES,
     CONF_UNITS,
     DEFAULT_UNITS,
@@ -61,8 +59,8 @@ class NWSDetailedForecastConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_API_KEY): str,
                 vol.Optional(CONF_NAME, default=DEFAULT_NAME): str,
                 vol.Optional(
-                    CONF_LOCATION, default=self.hass.config.location
-                ): cv.location,
+                    CONF_LOCATION, default=self.hass.config.location_name
+                ): cv.location_name,
                 vol.Optional(CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): int,
                 vol.Required(CONF_STATION_IDENTIFIER, default=""): str,
                 vol.Required(CONF_GRID_IDENTIFIER, default=""): str,
@@ -77,8 +75,8 @@ class NWSDetailedForecastConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
         if user_input is not None:
-            station = user_input[CONF_STATION_IDENTIFIER
-            grid = user_input[CONF_GRID_IDENTIFIER
+            station = user_input[CONF_STATION_IDENTIFIER]
+            grid = user_input[CONF_GRID_IDENTIFIER]
 
             # Convert scan interval to timedelta
             if isinstance(user_input[CONF_SCAN_INTERVAL], str):
@@ -179,10 +177,10 @@ class NWSDetailedForecastOptionsFlow(config_entries.OptionsFlow):
                         default=self.config_entry.options.get(
                             CONF_LOCATION,
                             self.config_entry.data.get(
-                                CONF_LOCATION, self.hass.config.location
+                                CONF_LOCATION, self.hass.config.location_name
                             ),
                         ),
-                    ): cv.location,
+                    ): cv.location_name,
                     vol.Required(
                         CONF_STATION_IDENTIFIER,
                         default=self.config_entry.options.get(
