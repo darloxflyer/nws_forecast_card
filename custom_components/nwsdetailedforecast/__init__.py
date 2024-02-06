@@ -80,7 +80,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         CONF_API_KEY: api_key,
         CONF_STATION_IDENTIFIER: station,
         CONF_GRID_IDENTIFIER: grid,
-        CONF_UNITS: units,
         CONF_TWICEDAILY_FORECAST: forecast_twicedaily,
         NWS_PLATFORM: nws_entity_platform,
         CONF_SCAN_INTERVAL: nws_scan_Int,
