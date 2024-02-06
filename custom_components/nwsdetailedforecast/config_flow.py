@@ -101,7 +101,7 @@ class NWSDetailedForecastConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             self._abort_if_unique_id_configured()
 
             try:
-                api_status = await _is_pw_api_online(
+                api_status = await _is_nws_api_online(
                     self.hass, user_input[CONF_API_KEY], station, grid
                 )
 
@@ -236,7 +236,7 @@ class NWSDetailedForecastOptionsFlow(config_entries.OptionsFlow):
         )
 
 
-async def _is_pw_api_online(hass, api_key, station, grid):
+async def _is_nws_api_online(hass, api_key, station, grid):
     forecastString = (
         "https://api.weather.gov/gridpoints/"
         + str(station)
