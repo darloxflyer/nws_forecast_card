@@ -1,0 +1,12 @@
+{
+  "domain": "nwsdetailedforecast",
+  "name": "NWS Detailed Forecast",
+  "codeowners": [ "@darloxflyer" ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/darloxflyer/nws_forecast_card.git",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/darloxflyer/nws_forecast_card/issues",
+  "requirements": [ "python-forecastio==1.4.0" ],
+  "version": "0.1.0"
+}

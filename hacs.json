@@ -1,0 +1,6 @@
+{
+  "name": "US NWS Detailed Forecast Integration",
+  "render_readme": true,
+  "homeassistant": "2023.10.0",
+  "filename": "nws-detailed-forecast.js"
+}
