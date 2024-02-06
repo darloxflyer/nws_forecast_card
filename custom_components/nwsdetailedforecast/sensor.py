@@ -264,7 +264,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_UNITS): vol.In(ALLOWED_UNITS),
         vol.Optional(CONF_LANGUAGE, default=DEFAULT_LANGUAGE): vol.In(LANGUAGE_CODES),
         vol.Optional(CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): cv.time_period,
-        vol.Optional(CONF_LOCATION, default=""): cv.location,
+        vol.Optional(CONF_LOCATION, default=""): str,
         vol.Required(CONF_STATION_IDENTIFIER, default=""): str,
         vol.Required(CONF_GRID_IDENTIFIER, default=""): str,
         vol.Optional(NWS_PLATFORM): cv.multi_select(NWS_PLATFORMS),
