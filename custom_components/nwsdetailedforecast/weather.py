@@ -36,7 +36,7 @@ from homeassistant.components.weather import (
 
 from homeassistant.const import (
     CONF_API_KEY,
-    CONF_LOCATION
+    CONF_LOCATION,
     CONF_MODE,
     CONF_NAME,
     CONF_SCAN_INTERVAL,

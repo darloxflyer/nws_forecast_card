@@ -218,7 +218,7 @@ class NWSDetailedForecastOptionsFlow(config_entries.OptionsFlow):
                         default=str(
                             self.config_entry.options.get(
                                 CONF_TWICEDAILY_FORECAST,
-                                self.config_entry.data.get(CONF_HOURLY_FORECAST, ""),
+                                self.config_entry.data.get(CONF_TWICEDAILY_FORECAST, ""),
                             ),
                         ),
                     ): str,
