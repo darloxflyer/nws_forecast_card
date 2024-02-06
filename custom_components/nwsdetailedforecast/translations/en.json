@@ -42,7 +42,7 @@
           "units": "Units for sensors. Only used for if sensors are requested.",
           "twicedaily_forecast": "Hourly forecast sensors in csv form from 0-1 (ex. '0,1'). Only used if sensors are requested.\n NOTE: Removing sensors will produce orphaned entities that need to be deleted.",
           "monitored_conditions": "Monitored conditions to create sensors for. Only used if sensors are requested.\n NOTE: Removing sensors will produce orphaned entities that need to be deleted.",
-          "nws_platform": "Weather Entity and/or Sensor Entity. Sensor will create entities for each condition at each time. If unsure, only select Weather!",
+          "nws_platform": "Weather Entity and/or Sensor Entity. Sensor will create entities for each condition at each time. If unsure, only select Weather!"
         },
         "description": "Set up NWS Detailed Forecast integration.",
         "data_description": {

@@ -46,8 +46,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     location = entry.data.get(CONF_LOCATION, hass.config.location_name)
     station = _get_config_value(entry, CONF_STATION_IDENTIFIER)
     grid = _get_config_value(entry, CONF_GRID_IDENTIFIER)
-    pw_entity_platform = _get_config_value(entry, PW_PLATFORM)
-    pw_scan_Int = entry.data[CONF_SCAN_INTERVAL]
+    nws_entity_platform = _get_config_value(entry, NWS_PLATFORM)
+    nws_scan_Int = entry.data[CONF_SCAN_INTERVAL]
 
     # _LOGGER.warning(forecast_days)
     if isinstance(forecast_twicedaily, str):
@@ -66,7 +66,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     # Create and link weather WeatherUpdateCoordinator
     weather_coordinator = WeatherUpdateCoordinator(
-        api_key, station, grid, timedelta(seconds=pw_scan_Int), hass
+        api_key, station, grid, timedelta(seconds=nws_scan_Int), hass
     )
     hass.data[DOMAIN][unique_location] = weather_coordinator
 
@@ -81,20 +81,20 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         CONF_GRID_IDENTIFIER: grid,
         CONF_UNITS: units,
         CONF_TWICEDAILY_FORECAST: forecast_twicedaily,
-        PW_PLATFORM: pw_entity_platform,
-        CONF_SCAN_INTERVAL: pw_scan_Int,
+        NWS_PLATFORM: nws_entity_platform,
+        CONF_SCAN_INTERVAL: nws_scan_Int,
     }
 
     # If both platforms
-    if (PW_PLATFORMS[0] in pw_entity_platform) and (
-        PW_PLATFORMS[1] in pw_entity_platform
+    if (NWS_PLATFORMS[0] in nws_entity_platform) and (
+        NWS_PLATFORMS[1] in nws_entity_platform
     ):
         await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     # If only sensor
-    elif PW_PLATFORMS[0] in pw_entity_platform:
+    elif NWS_PLATFORMS[0] in nws_entity_platform:
         await hass.config_entries.async_forward_entry_setup(entry, PLATFORMS[0])
     # If only weather
-    elif PW_PLATFORMS[1] in pw_entity_platform:
+    elif NWS_PLATFORMS[1] in nws_entity_platform:
         await hass.config_entries.async_forward_entry_setup(entry, PLATFORMS[1])
 
     update_listener = entry.add_update_listener(async_update_options)
@@ -110,20 +110,20 @@ async def async_update_options(hass: HomeAssistant, entry: ConfigEntry) -> None:
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
 
-    pw_entity_prevplatform = hass.data[DOMAIN][entry.entry_id][PW_PLATFORM]
+    nws_entity_prevplatform = hass.data[DOMAIN][entry.entry_id][NWS_PLATFORM]
 
     # If both
-    if (PW_PLATFORMS[0] in pw_entity_prevplatform) and (
-        PW_PLATFORMS[1] in pw_entity_prevplatform
+    if (NWS_PLATFORMS[0] in nws_entity_prevplatform) and (
+        NWS_PLATFORMS[1] in nws_entity_prevplatform
     ):
         unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     # If only sensor
-    elif PW_PLATFORMS[0] in pw_entity_prevplatform:
+    elif NWS_PLATFORMS[0] in nws_entity_prevplatform:
         unload_ok = await hass.config_entries.async_unload_platforms(
             entry, [PLATFORMS[0]]
         )
     # If only Weather
-    elif PW_PLATFORMS[1] in pw_entity_prevplatform:
+    elif NWS_PLATFORMS[1] in nws_entity_prevplatform:
         unload_ok = await hass.config_entries.async_unload_platforms(
             entry, [PLATFORMS[1]]
         )

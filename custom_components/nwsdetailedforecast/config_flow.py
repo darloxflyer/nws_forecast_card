@@ -60,7 +60,7 @@ class NWSDetailedForecastConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Optional(CONF_NAME, default=DEFAULT_NAME): str,
                 vol.Optional(
                     CONF_LOCATION, default=self.hass.config.location_name
-                ): cv.location_name,
+                ): str,
                 vol.Optional(CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): int,
                 vol.Required(CONF_STATION_IDENTIFIER, default=""): str,
                 vol.Required(CONF_GRID_IDENTIFIER, default=""): str,
@@ -180,7 +180,7 @@ class NWSDetailedForecastOptionsFlow(config_entries.OptionsFlow):
                                 CONF_LOCATION, self.hass.config.location_name
                             ),
                         ),
-                    ): cv.location_name,
+                    ): str,
                     vol.Required(
                         CONF_STATION_IDENTIFIER,
                         default=self.config_entry.options.get(
